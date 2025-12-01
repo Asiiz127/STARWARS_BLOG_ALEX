@@ -1,3 +1,5 @@
+import React from 'react';
+
 export const Character = () => {
     return (
         <div>
@@ -6,3 +8,4 @@ export const Character = () => {
         </div>
     );
 };
+
