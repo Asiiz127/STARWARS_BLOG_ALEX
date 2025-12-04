@@ -4,16 +4,16 @@ import "./index.css";
 
 import { RouterProvider } from "react-router-dom";
 import { router } from "./routes";
-import { StoreProvider } from "./hooks/useGlobalReducer";
+import { FavoritesProvider } from "./hooks/FavoritesContext";
 
 const Main = () => {
   return (
     <React.StrictMode>
       {/* Provide global state to all components */}
-      <StoreProvider>
+      <FavoritesProvider>
         {/* Set up routing for the application */}
-        <RouterProvider router={router} />
-      </StoreProvider>
+        <RouterProvider router={router} />  
+      </FavoritesProvider>
     </React.StrictMode>
   );
 };
