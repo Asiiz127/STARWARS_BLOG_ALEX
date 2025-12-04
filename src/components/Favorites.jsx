@@ -11,9 +11,8 @@ import {
 import { ChevronDownIcon, TrashIcon } from "@heroicons/react/24/solid";
 
 
-export const Favorites = () => {
+export const FavoritesList = () => {
   const [open, setOpen] = React.useState(false);
-  const [] = React.use();
 
   return (
     <Menu open={open} handler={setOpen} placement="bottom-end" offset={15}>
@@ -38,9 +37,9 @@ export const Favorites = () => {
         </Button>
       </MenuHandler>
       <MenuList className="bg-gray-900 border border-gray-700 p-2 shadow-xl shadow-black/80 min-w-[240px] max-h-72 overflow-y-auto">
-        {favoritesList.length > 0 ? (
+        {FavoritesList.length > 0 ? (
           <div className="flex flex-col gap-1">
-            {favoritesList.map((item, index) => (
+            {FavoritesList.map((item, index) => (
               <MenuItem
                 key={index}
                 className="flex items-center justify-between gap-3 rounded-md p-2.5

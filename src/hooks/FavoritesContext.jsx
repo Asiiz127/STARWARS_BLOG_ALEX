@@ -1,10 +1,10 @@
 import React from "react";
 import { useReducer, useContext, createContext } from "react";
-import { storeReducer, initialStore } from "../store";
+import  storeReducer, { initialStore } from "../store";
 
 export const FavoritesContext = createContext();
 
-export function ReduceComponent({ children }) {
+export function FavoritesProvider({ children }) {
   const [store, dispatch] = useReducer(storeReducer, initialStore());
   return (
     <FavoritesContext.Provider value={{ store, dispatch }}>

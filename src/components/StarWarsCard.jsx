@@ -6,18 +6,17 @@ import {
   Button,
 } from "@material-tailwind/react";
 import { FavoritesContext } from "../hooks/FavoritesContext.jsx";
-import { use } from "react";
-
+import { useContext } from "react";
 
 export function StarWarsCard({ title, imgURL, children }) {
-  const { setFavorites } = use(FavoritesContext);
+  const { store, dispatch } = useContext(FavoritesContext);
 
   const handleAdd = () => {
-    setFavorites({ title, imgURL });
+    dispatch({
+      type: "add_favorites",
+      payload: { name: title, imgURL }, // adapta a lo que use tu reducer
+    });
   };
-
-
-
   return (
     <Card className="mt-6 w-96 border border-gray-300 shadow-sm overflow-hidden flex flex-col">
       <CardHeader
