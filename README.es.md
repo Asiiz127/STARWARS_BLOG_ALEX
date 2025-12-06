@@ -36,7 +36,7 @@ El archivo `./src/store.js` tiene una estructura predeterminada para el store, t
 💡Nota: Hay un ejemplo usando el store y dispatcher de useReducer en el archivo `pages/demo.js`;
 
 + Entiende [como funciona el `useReducer`](https://4geeks.com/es/lesson/que-es-usereducer-react)
-+ Lee más sobre [implementar un estado global con API de Contexto](https://4geeks.com/es/lesson/context-api-es)
++ Lee más sobre [implementar un estado global con API de Contexto](https://4geeks.com/es/lesson/hooks-api-es)
 + Lee más sobre [hooks de react](https://4geeks.com/es/lesson/react-hooks-explained-es)
 
 El `Proveedor` del store para este contexto ya está configurado en `./src/main.jsx`. Puedes acceder al store desde cualquier componente usando el hook `useGlobalReducer` para obtener el `store` y el `despachador`. Consulta `/views/demo.js` para ver una demostración. Aquí tienes un ejemplo más pequeño:

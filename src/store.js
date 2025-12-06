@@ -9,9 +9,9 @@ export const initialStore=()=>{
 export default function storeReducer(store, action = {}) {
   switch (action.type) {
     case "add_favorites":
-      return {...store,FavoritesList: [...store.FavoritesList, action.payload.name],};
+      return { ...store, FavoritesList: [...store.FavoritesList, action.payload] };
     case "remove_favorites":
-      return {...store, FavoritesList: store.FavoritesList.filter((item) => item !== action.payload.name,),};
+      return { ...store, FavoritesList: store.FavoritesList.filter((item) => item !== action.payload) };
     case "update_characters":
       const characterList = action.payload;
       return { ...store, characterList };

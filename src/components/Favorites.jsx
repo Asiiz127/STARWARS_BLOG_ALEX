@@ -9,11 +9,14 @@ import {
   IconButton,
 } from "@material-tailwind/react";
 import { ChevronDownIcon, TrashIcon } from "@heroicons/react/24/solid";
-
+import { useFavorites } from "../hooks/FavoritesContext";
 
 export const FavoritesList = () => {
   const [open, setOpen] = React.useState(false);
 
+  const { store, actions } = useFavorites();
+  const favs = store.FavoritesList;
+  const { removeFavorite } = actions;
   return (
     <Menu open={open} handler={setOpen} placement="bottom-end" offset={15}>
       <MenuHandler>
@@ -26,43 +29,51 @@ export const FavoritesList = () => {
           active:bg-emerald-700 
           transition-all shadow-sm hover:shadow-md
           shadow-retro-glow
-          ${open ? "bg-emerald-700 shadow-inner" : ""}`}>
-          Favorites
+          ${open ? "bg-emerald-700 shadow-inner" : ""}`}
+        >
+          Favorites{" "}
+          <span className="bg-emerald-800 px-2 py-0.5 rounded-full text-xs">
+            {favs.length}
+          </span>
           <ChevronDownIcon
             strokeWidth={3}
             style={{ width: "16px", height: "16px" }}
-            className={`transition-transform duration-200 ${
-              open ? "rotate-180" : ""
-            }`}/>
+            className={`transition-transform duration-200 ${open ? "rotate-180" : ""}`}
+          />
         </Button>
       </MenuHandler>
       <MenuList className="bg-gray-900 border border-gray-700 p-2 shadow-xl shadow-black/80 min-w-[240px] max-h-72 overflow-y-auto">
-        {FavoritesList.length > 0 ? (
+        {favs.length > 0 ? (
           <div className="flex flex-col gap-1">
-            {FavoritesList.map((item, index) => (
+            {favs.map((item, index) => (
               <MenuItem
                 key={index}
                 className="flex items-center justify-between gap-3 rounded-md p-2.5
-                  text-gray-100 hover:bg-gray-800 hover:text-white 
-                  focus:bg-gray-800 active:bg-gray-800 transition-colors group">
-                <div className="flex items-center gap-2 truncate w-full">
+               text-gray-100 hover:bg-gray-800 hover:text-white
+               focus:bg-gray-800 active:bg-gray-800 transition-colors group"
+              >
+                <div className="flex items-center gap-2 flex-1 min-w-0">
                   <span className="h-2 w-2 rounded-full bg-blue-500 shrink-0" />
-                  <Typography variant="small" className="font-medium truncate">
+                  <Typography
+                    variant="small"
+                    className="font-medium truncate leading-none"
+                  >
                     {item}
                   </Typography>
                 </div>
-                {/* Botón de borrar: Rojo brillante para buen contraste sobre fondo oscuro */}
-                <IconButton
-                  variant="text"
-                  size="sm"
-                  className="opacity-0 group-hover:opacity-100 text-red-400 hover:bg-red-500/10 hover:text-red-300 transition-all"
+
+                <span
                   onClick={(e) => {
-                    e.stopPropagation();
-                    console.log(`Borrar ${item}`);
+                  e.stopPropagation();
+                  removeFavorite(item);
                   }}
+                  className="flex items-center justify-center
+                  w-7 h-7 opacity-0 group-hover:opacity-100
+                  text-red-400 hover:bg-red-500/10 hover:text-red-300
+                  transition-all shrink-0"
                 >
                   <TrashIcon className="h-4 w-4" />
-                </IconButton>
+                </span>
               </MenuItem>
             ))}
           </div>
